@@ -1,6 +1,7 @@
 package com.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,25 +18,29 @@ public class RegisterServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		PrintWriter pw = response.getWriter();
+		pw.println("<h1>Unauthorized access to this page!</h1>");
+		RequestDispatcher rd = request.getRequestDispatcher("Registration.html");
+		rd.include(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		RegisterBean rBean = new RegisterBean();
-		if(rBean.connectDatabase()) {
-			
-			if(rBean.register(request.getParameter("username"),request.getParameter("password"),
-					Integer.parseInt(request.getParameter("age")),request.getParameter("department"),
-					request.getParameter("designation"),request.getParameter("email"))) {
+		if (rBean.connectDatabase()) {
+
+			if (rBean.register(request.getParameter("username"), request.getParameter("password"),
+					Integer.parseInt(request.getParameter("age")), request.getParameter("department"),
+					request.getParameter("designation"), request.getParameter("email"))) {
 				RequestDispatcher rd = request.getRequestDispatcher("RegistrationSuccessful.jsp");
 				rd.forward(request, response);
-				
-			}else {
+
+			} else {
 				RequestDispatcher rd = request.getRequestDispatcher("InvalidRegistration.jsp");
 				rd.forward(request, response);
 			}
-			
-		}else {
+
+		} else {
 			response.getWriter().append("<h1>Error Connecting Database</h1>");
 		}
 	}

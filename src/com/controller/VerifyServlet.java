@@ -1,6 +1,7 @@
 package com.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -21,7 +22,10 @@ public class VerifyServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		PrintWriter pw = response.getWriter();
+		pw.println("<h1>Unauthorized access to this page!</h1>");
+		RequestDispatcher rd = request.getRequestDispatcher("Login.html");
+		rd.include(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
