@@ -4,11 +4,13 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Invalid Registration</title>
 </head>
 <body>
-<h1>
-Some Problem with Account creation Try Again :(
+<h1 style="text-align: center;font-size: 25px;">
+<%= request.getAttribute("message") %>
+<br>
+Try Again !
 </h1>
 <jsp:include page='Registration.html' />
 </body>

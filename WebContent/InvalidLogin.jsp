@@ -7,8 +7,10 @@
 <title>Invalid Login</title>
 </head>
 <body>
-<h1>
+<h1 style="text-align: center;font-size: 25px;">
 Invalid Login Credentials :(
+<br>
+Try Again !
 </h1>
 <jsp:include page='Login.html' />
 </body>

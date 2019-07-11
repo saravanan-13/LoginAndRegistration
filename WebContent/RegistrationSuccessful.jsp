@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,11 +7,12 @@
 <title>Registration SuccessFul</title>
 </head>
 <body>
-<h1>
-<%= request.getParameter("username") %>
-<br>
-You have been Registered Successfully!
-</h1>
-<jsp:include page='Login.html' />
+	<h1 style="text-align: center; font-size: 25px;">
+		Welcome
+		<%=request.getParameter("username")%>
+		<br>
+		<br> You have been Registered Successfully! Please Login to Continue !
+	</h1>
+	<jsp:include page='Login.html' />
 </body>
 </html>

@@ -8,7 +8,6 @@ public class VerifyBean {
 
 	public boolean connectDatabase() {
 		try {
-
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			String url = "jdbc:mysql://localhost:3306/login_authentication";
 			String username = "root";
@@ -17,6 +16,7 @@ public class VerifyBean {
 		}
 
 		catch (Exception e) {
+			System.out.println(e);
 			return false;
 		}
 	}
@@ -39,5 +39,6 @@ public class VerifyBean {
 			return false;
 		}
 	}
+	 
 
 }

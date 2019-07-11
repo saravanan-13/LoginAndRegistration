@@ -31,8 +31,8 @@ public class VerifyServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		VerifyBean vBean = new VerifyBean();
 		if(vBean.connectDatabase()) {
-			
 			if(vBean.loginAuthentication(request.getParameter("username"),request.getParameter("password"))) {
+				System.out.println("Login success");
 				RequestDispatcher rd = request.getRequestDispatcher("Welcome.jsp");
 				rd.forward(request, response);
 			}else {

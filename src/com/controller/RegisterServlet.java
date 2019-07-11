@@ -28,14 +28,19 @@ public class RegisterServlet extends HttpServlet {
 			throws ServletException, IOException {
 		RegisterBean rBean = new RegisterBean();
 		if (rBean.connectDatabase()) {
-
-			if (rBean.register(request.getParameter("username"), request.getParameter("password"),
+			
+			ResponseObject responseObject = rBean.register(request.getParameter("username"), request.getParameter("password"),
 					Integer.parseInt(request.getParameter("age")), request.getParameter("department"),
-					request.getParameter("designation"), request.getParameter("email"))) {
+					 request.getParameter("email"));
+			
+			System.out.println(request.getAttribute("message"));
+			if (responseObject.getResult()) {
+				request.setAttribute("message", responseObject.getMessage());
 				RequestDispatcher rd = request.getRequestDispatcher("RegistrationSuccessful.jsp");
 				rd.forward(request, response);
 
 			} else {
+				request.setAttribute("message", "Account Already exists");
 				RequestDispatcher rd = request.getRequestDispatcher("InvalidRegistration.jsp");
 				rd.forward(request, response);
 			}

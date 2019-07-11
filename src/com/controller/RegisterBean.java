@@ -21,26 +21,44 @@ public class RegisterBean {
 		}
 	}
 
-	public boolean register(String username, String password, int age, String department, String designation, String email ) {
-		try {
-			String login = "insert into user values(?,?,?,?,?,?)";
+	public ResponseObject register(String name, String password, int age, String department, String email) {
+		VerifyBean vrBean = new VerifyBean();
+		ResponseObject responseObject = new ResponseObject();
 
-			PreparedStatement preparedStatement = connection.prepareStatement(login);
-			preparedStatement.setString(1, username);
-			preparedStatement.setString(2, password);
-			preparedStatement.setInt(3, age);
-			preparedStatement.setString(4, department);
-			preparedStatement.setString(5, designation);
-			preparedStatement.setString(6, email);
-			try {
-				preparedStatement.execute();
-				return true;
-			}catch (Exception e) {
-				return false;
+		try {
+			
+			if (vrBean.loginAuthentication(name, password) == false) {
+				String login = "insert into user values(?,?,?,?,?)";
+
+				PreparedStatement preparedStatement = connection.prepareStatement(login);
+				preparedStatement.setString(1, name);
+				preparedStatement.setString(2, password);
+				preparedStatement.setInt(3, age);
+				preparedStatement.setString(4, email);
+				preparedStatement.setString(5, department);
+				try {
+					preparedStatement.execute();
+					responseObject.setMessage("Successfully Registered !");
+					responseObject.setResult(true);
+					return responseObject;
+				} catch (Exception e) {
+					responseObject.setMessage(e.getMessage());
+					responseObject.setResult(false);
+					return responseObject;
+
+				}
+			} else {
+				responseObject.setMessage("Account Already Exists !");
+				responseObject.setResult(false);
+				return responseObject;
+
 			}
 
 		} catch (Exception e) {
-			return false;
+			responseObject.setMessage(e.getMessage());
+			responseObject.setResult(false);
+			return responseObject;
+
 		}
 	}
 

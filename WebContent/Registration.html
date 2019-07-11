@@ -3,47 +3,69 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Registration Page</title>
+  <link rel="stylesheet" type="text/css" href="Registration.css">
 </head>
 <body>
-<form action="register" method="post">
-  <div class="container">
-    <h1>Sign Up</h1>
-    <p>Please fill in this form to create an account.</p>
-    <hr>
 
-    <label for="username"><b>Username</b></label>
-    <input type="text" placeholder="Enter username" name="username" required/>
-    <br><br>
-
-    <label for="password"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" required>
-    <br><br>
-
-    <label for="password-repeat"><b>Confirm Password</b></label>
-    <input type="password" placeholder="Repeat Password" name="password-repeat" required>
-    <br><br>
-    
-	<label for="email"><b>Email</b></label>
-    <input type="email" placeholder="Enter Email" name="email" required>
-    <br><br>
-    
-    <label for="age"><b>Age</b></label>
-    <input type="text" placeholder="Enter age" name="age" required/>
-     <br><br>
-    
-     <label for="department"><b>Department</b></label>
-    <input type="text" placeholder="Enter department" name="department" required/> 
-     <br><br>
-    
-    <label for="designation"><b>Designation</b></label>
-    <input type="text" placeholder="Enter Designation" name="designation" required/>
-    <br><br>
-    
-    <div class="clearfix">
-      <button type="reset" class="cancelbtn">Reset</button>
-      <button type="submit" class="signupbtn">Sign Up</button>
+  <div class="login">
+      <div class="login__form">
+      <h1 class="sign_in">Sign Up</h1>
+        <form action="register" method="post" onsubmit="return passwordCheck()">
+        <div class="login__row">
+          <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
+            <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
+          </svg>
+          <input type="text" class="login__input name" placeholder="Username" name="username" required/>
+        </div>
+        <div class="login__row">
+          <svg class="login__icon pass svg-icon" viewBox="0 0 20 20">
+            <path d="M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0" />
+          </svg>
+          <input type="password" id="pwd1" class="login__input pass" placeholder="Password" name="password" required/>
+        </div>
+         <div class="login__row">
+          <svg class="login__icon pass svg-icon" viewBox="0 0 20 20">
+            <path d="M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0" />
+          </svg>
+          <input type="password" id="pwd2" class="login__input pass" placeholder="Confirm Password" name="password2" required/>
+        </div>
+        
+         <div class="login__row">
+          <svg class="login__icon name  svg-icon" viewBox="0 0 20 20">
+			<path d="M18.303,4.742l-1.454-1.455c-0.171-0.171-0.475-0.171-0.646,0l-3.061,3.064H2.019c-0.251,0-0.457,0.205-0.457,0.456v9.578c0,0.251,0.206,0.456,0.457,0.456h13.683c0.252,0,0.457-0.205,0.457-0.456V7.533l2.144-2.146C18.481,5.208,18.483,4.917,18.303,4.742 M15.258,15.929H2.476V7.263h9.754L9.695,9.792c-0.057,0.057-0.101,0.13-0.119,0.212L9.18,11.36h-3.98c-0.251,0-0.457,0.205-0.457,0.456c0,0.253,0.205,0.456,0.457,0.456h4.336c0.023,0,0.899,0.02,1.498-0.127c0.312-0.077,0.55-0.137,0.55-0.137c0.08-0.018,0.155-0.059,0.212-0.118l3.463-3.443V15.929z M11.241,11.156l-1.078,0.267l0.267-1.076l6.097-6.091l0.808,0.808L11.241,11.156z"></path>
+		</svg>
+          <input type="number" class="login__input name" placeholder="Age" name="age" required/>
+        </div>
+         <div class="login__row">
+          <svg class="login__icon pass svg-icon" viewBox="0 0 20 20">
+							<path d="M17.211,3.39H2.788c-0.22,0-0.4,0.18-0.4,0.4v9.614c0,0.221,0.181,0.402,0.4,0.402h3.206v2.402c0,0.363,0.429,0.533,0.683,0.285l2.72-2.688h7.814c0.221,0,0.401-0.182,0.401-0.402V3.79C17.612,3.569,17.432,3.39,17.211,3.39M16.811,13.004H9.232c-0.106,0-0.206,0.043-0.282,0.117L6.795,15.25v-1.846c0-0.219-0.18-0.4-0.401-0.4H3.189V4.19h13.622V13.004z"></path>
+						</svg>
+          <input type="email" class="login__input name" placeholder="Email" name="email" required/>
+        </div>
+         <div class="login__row">
+         <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
+							<path d="M15.573,11.624c0.568-0.478,0.947-1.219,0.947-2.019c0-1.37-1.108-2.569-2.371-2.569s-2.371,1.2-2.371,2.569c0,0.8,0.379,1.542,0.946,2.019c-0.253,0.089-0.496,0.2-0.728,0.332c-0.743-0.898-1.745-1.573-2.891-1.911c0.877-0.61,1.486-1.666,1.486-2.812c0-1.79-1.479-3.359-3.162-3.359S4.269,5.443,4.269,7.233c0,1.146,0.608,2.202,1.486,2.812c-2.454,0.725-4.252,2.998-4.252,5.685c0,0.218,0.178,0.396,0.395,0.396h16.203c0.218,0,0.396-0.178,0.396-0.396C18.497,13.831,17.273,12.216,15.573,11.624 M12.568,9.605c0-0.822,0.689-1.779,1.581-1.779s1.58,0.957,1.58,1.779s-0.688,1.779-1.58,1.779S12.568,10.427,12.568,9.605 M5.06,7.233c0-1.213,1.014-2.569,2.371-2.569c1.358,0,2.371,1.355,2.371,2.569S8.789,9.802,7.431,9.802C6.073,9.802,5.06,8.447,5.06,7.233 M2.309,15.335c0.202-2.649,2.423-4.742,5.122-4.742s4.921,2.093,5.122,4.742H2.309z M13.346,15.335c-0.067-0.997-0.382-1.928-0.882-2.732c0.502-0.271,1.075-0.429,1.686-0.429c1.828,0,3.338,1.385,3.535,3.161H13.346z"></path>
+						</svg>
+          <input type="text" class="login__input name" placeholder="Department" name="department" required/>
+        </div>
+         <button type="submit" class="login__submit" >Sign Up</button>
+        </form>
+        <p class="login__signup">Already have an account? &nbsp;<a href="Login.html">Sign In</a></p>
+      </div>
     </div>
-  </div>
-</form>
+
 </body>
+<script>
+	function passwordCheck(){
+		var pwd1 = document.getElementById("pwd1").value;
+		var pwd2 = document.getElementById("pwd2").value;
+		if(pwd1 === pwd2){
+			return true;
+		}
+		else{
+			alert("Both the password fields are not same !");
+			return false;
+		}
+	}
+</script>
 </html>
